@@ -43,3 +43,121 @@ function add(a: number, b: number): number {
 
 console.log(add(1, 3))
 // console.log(add(1, '3')) 어긋난 타입 입력의 경우 오류 발생
+
+
+/*
+2. 인터페이스
+객체의 타입을 정의하는 방법, interface라는 키워드 사용
+*/
+
+interface Company {
+  name: string;
+  age: number;
+  address?: string; // 선택속성으로 undefined 값 역시 가능해진다.
+}
+
+const cobalt: Company = {
+  name: 'Cobalt, Inc.',
+  age: 3,
+  address: 'Seoul'
+}
+
+console.log(cobalt)
+
+const person: { // 익명 인터페이스
+  name: string,
+  age?: number
+} = {
+  name: 'Hoon',
+  age: 100
+}
+
+/*
+3. tuple
+배열을 Tuple로 이용하는 방법
+*/
+
+const tuple: [string, number] = ['hoon', 100];
+console.log(tuple[1])
+
+/*
+4. enum
+열거형을 사용하는 방법
+*/
+
+enum Color {
+  RED = 'red',
+  GREEN = 'green',
+  BLUE = 'blue'
+};
+
+const color = Color.BLUE;
+console.log(color);
+
+/*
+5. 대수 타입
+여러 자료형의 값을 가질 수 있게하는 방법
+합집합, 교집합 타입이 있다.
+*/
+
+let numOrStr: number | string = 1;
+// numOrStr = false; 합집합 타입의 오류 검출
+numOrStr = 'str'
+
+// let numAndStr: number & string = ''; 원시 타입에서의 교집합은 사용불가 
+interface Name {
+  name: string;
+}
+
+interface Age {
+  age: number;
+}
+
+let hoon: Name & Age = {
+  name: 'Hoon',
+  age: 100
+}
+
+let nam: Name | Age = {
+  age: 100
+}
+
+type Person = Name & Age;
+let julia: Person = {
+  name: 'julia',
+  age: 100
+}
+
+/*
+6. Optional
+ES 2021에도 추가된 기능, 타입스크립트는 이미 있었다.
+*/
+
+interface Post {
+  title: string;
+  content: string
+}
+
+interface ResponseData {
+  post?: Post;
+  message?: string;
+  status: number;
+}
+
+const response: ResponseData[] = [
+  {
+    post: {
+      title: 'Hello',
+      content: 'How are you?'
+    },
+    status: 200
+  },
+  {
+    message: 'Error!',
+    status: 500
+  }
+]
+
+console.log(response[0].post.title);
+console.log(response[1].post && response[1].post.title);
+console.log(response[1].post?.title); // 위와 동일하며 데이터가 없다면 자동으로 undefined를 반환한다.
