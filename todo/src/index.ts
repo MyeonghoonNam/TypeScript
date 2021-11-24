@@ -1,3 +1,6 @@
+// :any 모든 타입을 가능하게 지정한다.
+// :void 반환값이 없는 함수의 경우를 명시적으로 나타낸다.
+
 let todoItems;
 
 // api
@@ -48,6 +51,7 @@ function log() {
   console.log(todoItems);
 }
 
+// 실행부
 todoItems = fetchTodoItems();
 addTwoTodoItems();
 log();
