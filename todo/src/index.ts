@@ -41,7 +41,20 @@ function showCompleted(): object[] {
   return todoItems.filter(item => item.done);
 }
 
-function addTwoTodoItems() {}
+function addTwoTodoItems(): void {
+  const item4 = {
+    id: 4,
+    title: 'item 4',
+    done: false,
+  };
+
+  addTodo(item4);
+  addTodo({
+    id: 5,
+    title: 'item 5',
+    done: false,
+  });
+}
 
 // 유틸 함수
 function log(): void {
