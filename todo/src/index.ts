@@ -44,7 +44,7 @@ function showCompleted(): object[] {
 function addTwoTodoItems() {}
 
 // 유틸 함수
-function log() {
+function log(): void {
   console.log(todoItems);
 }
 
