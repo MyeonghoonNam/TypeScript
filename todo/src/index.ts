@@ -69,7 +69,7 @@ function addTwoTodoItems(): void {
 }
 
 // 유틸 함수
-function log() {
+function log(): void {
   console.log(todoItems);
 }
 
