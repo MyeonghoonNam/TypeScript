@@ -39,4 +39,19 @@ interface StringArray {
   [index: number]: string;
 }
 
+const arr: StringArray = ['a', 'b', 'c'];
 // arr[0] = 10; 오류 발생, 10은 number 타입
+
+// 딕셔너리 패턴
+interface StringRegexDictionary {
+  [key: string]: RegExp;
+}
+
+const obj: StringRegexDictionary = {
+  cssFile: /\.css$/,
+  jsFile: /\.js$/
+}
+
+// 오류발생 값으로 정규식을 대입하지 않았기 때문
+// obj['cssFile'] = 'a'; 
+
