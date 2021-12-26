@@ -33,3 +33,10 @@ interface SumFunction {
 const sum:SumFunction = (a2: number, b2: number): number => {
   return a2 + b2
 }
+
+// 인덱싱
+interface StringArray {
+  [index: number]: string;
+}
+
+// arr[0] = 10; 오류 발생, 10은 number 타입
