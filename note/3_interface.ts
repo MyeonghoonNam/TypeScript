@@ -55,3 +55,23 @@ const obj: StringRegexDictionary = {
 // 오류발생 값으로 정규식을 대입하지 않았기 때문
 // obj['cssFile'] = 'a'; 
 
+
+Object.keys(obj).forEach((value) => {
+  console.log(value);
+});
+
+// 인터페이스 확장
+interface Person {
+  name: string;
+  age: number;
+}
+
+interface Developer extends Person {
+  language: string;
+}
+
+const myInfo: Developer = {
+  name: 'hoon',
+  age: 26,
+  language: 'javascript, react'
+}
