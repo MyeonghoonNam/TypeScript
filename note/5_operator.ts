@@ -23,3 +23,21 @@ const logMessage = (value: string | number) => {
 logMessage('Hi~');
 logMessage(2022);
 
+interface Developer {
+  name: string;
+  skill: string;
+}
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+// 유니온 타입에 구조체를 지정하는 경우 구조체들의 공통된 속성만을 접근할 수 있도록 하여 안정성을 보장한다.
+const askSomeone = (someone: Developer | Person) => {
+  console.log(someone.name);
+
+  // 오류 발생
+  // console.log(someone.skill);
+  // console.log(someone.age);
+}
