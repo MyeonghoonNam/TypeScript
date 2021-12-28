@@ -41,3 +41,10 @@ const askSomeone = (someone: Developer | Person) => {
   // console.log(someone.skill);
   // console.log(someone.age);
 }
+
+// 인터섹션 타입을 통햏 접근하면 모든 속성 값에 접근이 가능하다.
+const askSomeoneIntersection = (someone: Developer & Person) => {
+  console.log(someone.name);
+  console.log(someone.skill);
+  console.log(someone.age);
+}
