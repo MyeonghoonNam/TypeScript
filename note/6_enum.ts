@@ -11,3 +11,25 @@ enum Shoes {
 
 const myShoes = Shoes.Nike;
 console.log(myShoes); // 0
+
+// enum 활용
+// 드롭다운과 같이 예제들이 많은 경우 예외처리를 좀 더 수월하게 가져갈 수 있는 효과가 있다.
+enum Answer {
+  Yes = 'Y',
+  No = 'N'
+}
+
+const askQuestion = (answer: Answer) => {
+  if(answer === Answer.Yes) {
+    console.log('정답');
+  }
+
+  if(answer === Answer.No) {
+    console.log('오답');
+  }
+}
+
+askQuestion(Answer.Yes);
+
+// enum을 통한 확실한 타입의 값을 제어할 수 있다.
+// askQuestion('Yes') 오류
