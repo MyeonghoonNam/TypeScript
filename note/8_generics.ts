@@ -28,13 +28,25 @@
 
 // 위의 중복 선언 단점을 극복하기 위해 파라미터에 유니온 타입을 이용하여 선언 중복을 막을 수 있지만
 // 유니온 타입들의 공통적으로 사용가능한 메서드만 사용가능하기에 input에 관한 문제는 해결가능 하지만 output에 관한 예상치 못한 에러를 직면할 수 있다.
-const logText = (text: string | number) => {
-  console.log(text);
-  return text;
-} 
+// const logText = (text: string | number) => {
+//   console.log(text);
+//   return text;
+// } 
 
-const log = logText('Hi');
+// const log = logText('Hi');
 // 언급한 바와 같이 문자열을 반환했지만 문자열 메서드를 사용하지 못하는 상황이 발생한다.
 // log.split('')
 
+// -------------------------------------------------------------------------------------------
 
+const logText = <T>(text:T):T => {
+  console.log(text);
+
+  return text;
+}
+
+// input과 output에 대한 타입 추론을 호출에서 미리 지정하므로 각 타입에 대한 다양한 메서드들을 사용할 수 있는 이점을 가져갈 수 있다.
+const string = logText<string>('Hi');
+string.split('');
+
+const boolean = logText<boolean>(true);
