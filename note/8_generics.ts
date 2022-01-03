@@ -50,3 +50,12 @@ const string = logText<string>('Hi');
 string.split('');
 
 const boolean = logText<boolean>(true);
+
+// 인터페이스에 제네릭을 선언하는 방법
+interface Dropdown<T> {
+  value: T;
+  boolean: boolean;
+}
+
+const obj1: Dropdown<string> = { value: 'abc', boolean: true};
+const obj2: Dropdown<number> = { value: 10, boolean: true};
