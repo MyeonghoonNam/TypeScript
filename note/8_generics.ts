@@ -85,3 +85,19 @@ const logTextLength = <T extends LengthType>(text: T): T => {
 
 logTextLength('a');
 logTextLength({ length: 10, text: 'abc'});
+
+// 제네릭 타입 제한 3 - keyof
+interface ShoppingItem {
+  name: string;
+  price: number;
+  stock: number;
+}
+
+// 인터페이스의 값 중 하나를 인자로 하는 타입을 지정할 수 있다.
+const getShoppingItemOption = <T extends keyof ShoppingItem>(itemOption: T): T => {
+  return itemOption;
+}
+
+getShoppingItemOption('name');
+getShoppingItemOption('price');
+getShoppingItemOption('stock');
