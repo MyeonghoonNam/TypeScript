@@ -59,3 +59,14 @@ interface Dropdown<T> {
 
 const obj1: Dropdown<string> = { value: 'abc', boolean: true};
 const obj2: Dropdown<number> = { value: 10, boolean: true};
+
+// 제네릭의 타입 제한
+const logTextLength = <T>(arr: T[]): T[] => {
+  console.log(arr.length);
+
+  arr.forEach((el) => {
+    console.log(el)
+  })
+  
+  return arr;
+}
