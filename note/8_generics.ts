@@ -61,12 +61,27 @@ const obj1: Dropdown<string> = { value: 'abc', boolean: true};
 const obj2: Dropdown<number> = { value: 10, boolean: true};
 
 // 제네릭의 타입 제한
-const logTextLength = <T>(arr: T[]): T[] => {
-  console.log(arr.length);
+// const logTextLength = <T>(arr: T[]): T[] => {
+//   console.log(arr.length);
 
-  arr.forEach((el) => {
-    console.log(el)
-  })
-  
-  return arr;
+//   arr.forEach((el) => {
+//     console.log(el)
+//   })
+
+//   return arr;
+// }
+
+// logTextLength<string>(['hi', 'abc']);
+
+// 제네릭 타입 제한 2 - 정의된 타입 이용하기
+interface LengthType {
+  length: number;
 }
+
+const logTextLength = <T extends LengthType>(text: T): T => {
+  text.length;
+  return text;
+}
+
+logTextLength('a');
+logTextLength({ length: 10, text: 'abc'});
