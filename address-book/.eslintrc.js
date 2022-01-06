@@ -24,8 +24,6 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
     "prefer-const": "off",
   },
   parserOptions: {
