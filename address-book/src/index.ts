@@ -11,8 +11,8 @@ interface Contact {
 }
 
 // api
-function fetchContacts() {
-  const contacts = [
+const fetchContacts = (): Promise<Contact[]> => {
+  const contacts: Contact[] = [
     {
       name: 'Tony',
       address: 'Malibu',
@@ -51,7 +51,7 @@ function fetchContacts() {
   return new Promise(resolve => {
     setTimeout(() => resolve(contacts), 2000);
   });
-}
+};
 
 // main
 class AddressBook {
