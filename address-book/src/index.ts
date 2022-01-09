@@ -55,13 +55,13 @@ const fetchContacts = (): Promise<Contact[]> => {
 
 // main
 class AddressBook {
-  contacts = [];
+  contacts: Contact[] = [];
 
   constructor() {
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData(): void {
     fetchContacts().then(response => {
       this.contacts = response;
     });
