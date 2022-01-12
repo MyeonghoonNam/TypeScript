@@ -29,3 +29,19 @@ if(skill) {
 } else if(age) {
   console.log(age);
 }
+
+// 타입 가드 정의
+// 타입가드 함수 네이밍은 앞에 is를 많이 붙여서 네이밍한다.
+// 사용자 지정 타입가드는 단순히 어떤 인자명은 어떠한 타입이다라는 값을 리턴하는 함수일 뿐이다.
+// 아래와 같이 타입가드를 활용하므로 24~31 라인의 코드 보다 훨씬 가독성이 좋은 코드를 작성할 수 있다.
+const isDeveloper = (args: Developer | Person): args is Developer => {
+  return (args as Developer).skill !== undefined
+}
+
+if(isDeveloper(hoon)) {
+  // Developer
+  console.log(hoon.skill);
+} else {
+  // Person
+  console.log(hoon.age)
+}
