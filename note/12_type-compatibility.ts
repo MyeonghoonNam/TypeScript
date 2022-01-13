@@ -30,3 +30,39 @@ let developer: Developer;
 // }
 
 // developer = new Person();
+
+// -----------------------------------------------------
+
+// 함수
+let add = (num: number) => {
+  // ...
+}
+
+let sum = (num1: number, num2: number) => {
+  // ...
+}
+
+// 아래의 함수에서 add 보다 sum의 함수 구조가 크다. 그러므로 위에서 살펴본 타입호환과 같이 에러발생하는 경우를 이해할 수 있다.
+sum = add;
+// add = sum; 에러 발생
+
+// 제네릭
+interface Empty<T> {
+  // ..
+}
+
+let empty1: Empty<string>
+let empty2: Empty<number>
+empty1 = empty2;
+empty2 = empty1;
+
+interface NotEmpty<T> {
+  data: T;
+}
+
+let notEmpty1: NotEmpty<string>;
+let notEmpty2: NotEmpty<number>;
+
+// 제네릭 타입이 다르므로 호환이 이루어지지 않는다.
+// notEmpty1 = notEmpty2;
+// notEmpty2 = notEmpty1;
