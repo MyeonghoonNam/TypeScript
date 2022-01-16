@@ -26,3 +26,22 @@ const displayProductDetail1 = (product: ProductDetail) => {
 const displayProductDetail2 = (product: Pick<Product, 'id' | 'name' | 'price'>) => {
   console.log(product);
 }
+
+interface AddressBook {
+  name: string;
+  phone: number;
+  address: string;
+  company: string;
+}
+
+// Omit 타입은 특정 타입에서 지정된 속성만 제거한 타입을 정의한다.
+const phoneBook: Omit<AddressBook, 'address'> = {
+  name: '재택근문',
+  phone: 12341111,
+  company: '회사'
+}
+
+const food: Omit<AddressBook, 'address' | 'company'> = {
+  name: '중국집',
+  phone: 44445555
+}
