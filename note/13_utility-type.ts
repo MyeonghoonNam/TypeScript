@@ -45,3 +45,10 @@ const food: Omit<AddressBook, 'address' | 'company'> = {
   name: '중국집',
   phone: 44445555
 }
+
+// Patial 타입은 특정 타입의 부분 집합을 만족하는 타입을 정의할 수 있다.
+const updateProductItem = (productItem: Partial<Product>) => {
+  productItem = {};
+  productItem = {id: 10};
+  productItem = {id: 20, price: 10000}
+}
