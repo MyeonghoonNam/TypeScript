@@ -52,3 +52,40 @@ const updateProductItem = (productItem: Partial<Product>) => {
   productItem = {id: 10};
   productItem = {id: 20, price: 10000}
 }
+
+// 실제 Patial을 활용하여 코드를 개선하는 과정을 살펴보자
+interface UserProfile { 
+  username: string;
+  email: string;
+  profilePhotoUrl: string;
+}
+
+// interface UserProfileUpdate {
+//   username?: string;
+//   email?: string;
+//   profilePhotoUrl?:string;
+// }
+
+// #1
+// interface UserProfileUpdate {
+//   username?: UserProfile['username'];
+//   email?: UserProfile['email'];
+//   profilePhotoUrl?:UserProfile['profilePhotoUrl'];
+// }
+
+// #2
+// 맵드 타입
+// type UserProfileUpdate = {
+//   [p in 'username' | 'email' | 'profilePhotoUrl']?: UserProfile[p];
+// }
+// type UserProfileKeys = keyof UserProfile
+
+// #3
+// type UserProfileUpdate = {
+//   [p in keyof UserProfile]?: UserProfile[p]
+// }
+
+// #4
+type Subset<T> = {
+  [p in keyof T]?: T[p]
+}
