@@ -1,3 +1,5 @@
+// @ts-check
+
 // utils
 function $(selector) {
   return document.querySelector(selector);
@@ -36,11 +38,24 @@ function createSpinnerElement(id) {
 let isDeathLoading = false;
 let isRecoveredLoading = false;
 
+/**
+ * @typedef {object} CovidSummary
+ * @property {Array<object>} Country
+ */
+
 // api
+/**
+ * @returns {Promise<CovidSummary>}
+ */
 function fetchCovidSummary() {
   const url = "https://api.covid19api.com/summary";
   return axios.get(url);
 }
+
+fetchCovidSummary().then((res) => {
+  // 위의 점진적인 타입 변환을 통해 res의 CovidSummary 타입을 추론할 수 있는 것을 볼 수 있다.
+  console.log(res);
+});
 
 function fetchCountryInfo(countryCode, status) {
   // params: confirmed, recovered, deaths
