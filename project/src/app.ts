@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import * as Chart from 'chart.js';
 
 // type module
-import { CovidSummaryResponse } from './covid/index'
+import { CovidSummaryResponse, CountrySummaryResponse } from './covid/index'
 
 // utils
 function $(selector: string) {
@@ -71,7 +71,7 @@ function initEvents() {
   rankList.addEventListener('click', handleListClick);
 }
 
-async function handleListClick(event: any) {
+async function handleListClick(event: any): Promise<AxiosResponse<CountrySummaryResponse>> {
   let selectedId;
   if (
     event.target instanceof HTMLParagraphElement ||
