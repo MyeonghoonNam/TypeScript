@@ -9,7 +9,7 @@ export interface Country {
   Slug: string;
   TotalConfirmed: number;
   TotalDeaths: number;
-  TotalRecoverd: number;
+  TotalRecovered: number;
 }
 
 interface Global {

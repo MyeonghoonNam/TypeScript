@@ -220,18 +220,18 @@ function setTotalConfirmedNumber(data: CovidSummaryResponse) {
   ).toString();
 }
 
-function setTotalDeathsByWorld(data: any) {
+function setTotalDeathsByWorld(data: CovidSummaryResponse) {
   deathsTotal.innerText = data.Countries.reduce(
-    (total: any, current: any) => (total += current.TotalDeaths),
+    (total: number, current: Country) => (total += current.TotalDeaths),
     0
-  );
+  ).toString();
 }
 
-function setTotalRecoveredByWorld(data: any) {
+function setTotalRecoveredByWorld(data: CovidSummaryResponse) {
   recoveredTotal.innerText = data.Countries.reduce(
-    (total: any, current: any) => (total += current.TotalRecovered),
+    (total: number, current: Country) => (total += current.TotalRecovered),
     0
-  );
+  ).toString();
 }
 
 function setCountryRanksByConfirmedCases(data: any) {
