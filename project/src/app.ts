@@ -254,7 +254,7 @@ function setCountryRanksByConfirmedCases(data: CovidSummaryResponse) {
   });
 }
 
-function setLastUpdatedTimestamp(data: any) {
+function setLastUpdatedTimestamp(data: CovidSummaryResponse) {
   lastUpdatedTime.innerText = new Date(data.Date).toLocaleString();
 }
 
