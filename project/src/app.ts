@@ -132,8 +132,8 @@ function clearDeathList() {
   deathsList.innerHTML = null;
 }
 
-function setTotalDeathsByCountry(data: any) {
-  deathsTotal.innerText = data[0].Cases;
+function setTotalDeathsByCountry(data: CountrySummaryResponse) {
+  deathsTotal.innerText = data[0].Cases.toString();
 }
 
 function setRecoveredList(data: any) {
