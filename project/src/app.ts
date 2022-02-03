@@ -71,7 +71,7 @@ function initEvents() {
   rankList.addEventListener('click', handleListClick);
 }
 
-async function handleListClick(event: any): Promise<AxiosResponse<CountrySummaryResponse>> {
+async function handleListClick(event: MouseEvent): Promise<AxiosResponse<CountrySummaryResponse>> {
   let selectedId;
   if (
     event.target instanceof HTMLParagraphElement ||
