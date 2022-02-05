@@ -67,10 +67,12 @@ function startApp() {
 
 // events
 function initEvents() {
+  if(!rankList) return;
+  
   rankList.addEventListener('click', handleListClick);
 }
 
-async function handleListClick(event: MouseEvent): Promise<AxiosResponse<CountrySummaryResponse>> {
+async function handleListClick(event: Event): Promise<AxiosResponse<CountrySummaryResponse>> {
   let selectedId;
   if (
     event.target instanceof HTMLParagraphElement ||

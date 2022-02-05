@@ -6,7 +6,8 @@
     "moduleResolution": "Node",
     "lib": ["ES2015", "DOM", "DOM.Iterable"],
     "noImplicitAny": true,
-    "strict": true
+    "strict": true,
+    "strictFunctionTypes": true
   },
   "include": ["./src/**/*"]
 }
