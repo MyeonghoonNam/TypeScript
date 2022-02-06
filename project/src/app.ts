@@ -53,7 +53,7 @@ enum CovidStatus {
   Deaths = 'deaths',
 }
 
-function fetchCountryInfo(countryCode: string, status: CovidStatus): Promise<AxiosResponse<CountrySummaryResponse>> {
+function fetchCountryInfo(countryCode: string | undefined, status: CovidStatus): Promise<AxiosResponse<CountrySummaryResponse>> {
   // params: confirmed, recovered, deaths
   const url = `https://api.covid19api.com/country/${countryCode}/status/${status}`;
   return axios.get(url);
@@ -72,13 +72,13 @@ function initEvents() {
   rankList.addEventListener('click', handleListClick);
 }
 
-async function handleListClick(event: Event): Promise<AxiosResponse<CountrySummaryResponse>> {
+async function handleListClick(event: Event) {
   let selectedId;
   if (
     event.target instanceof HTMLParagraphElement ||
     event.target instanceof HTMLSpanElement
   ) {
-    selectedId = event.target.parentElement.id;
+    selectedId = event.target.parentElement ? event.target.parentElement.id : undefined;
   }
   if (event.target instanceof HTMLLIElement) {
     selectedId = event.target.id;
