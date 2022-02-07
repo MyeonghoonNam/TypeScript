@@ -17,9 +17,9 @@ const confirmedTotal = $('.confirmed-total') as HTMLParagraphElement;
 const deathsTotal = $('.deaths') as HTMLParagraphElement;
 const recoveredTotal = $('.recovered') as HTMLParagraphElement;
 const lastUpdatedTime = $('.last-updated-time') as HTMLParagraphElement;
-const rankList = $('.rank-list');
-const deathsList = $('.deaths-list');
-const recoveredList = $('.recovered-list');
+const rankList = $('.rank-list') as HTMLOListElement;
+const deathsList = $('.deaths-list') as HTMLOListElement;
+const recoveredList = $('.recovered-list') as HTMLOListElement;
 const deathSpinner = createSpinnerElement('deaths-spinner');
 const recoveredSpinner = createSpinnerElement('recovered-spinner');
 
@@ -125,13 +125,11 @@ function setDeathsList(data: CountrySummaryResponse) {
     p.textContent = new Date(value.Date).toLocaleDateString().slice(0, -1);
     li.appendChild(span);
     li.appendChild(p);
-    deathsList?.appendChild(li);
+    deathsList.appendChild(li);
   });
 }
 
 function clearDeathList() {
-  if(!deathsList) return;
-  
   deathsList.innerHTML = '';
 }
 
@@ -158,7 +156,7 @@ function setRecoveredList(data: CountrySummaryResponse) {
 }
 
 function clearRecoveredList() {
-  recoveredList.innerHTML = null;
+  recoveredList.innerHTML = '';
 }
 
 function setTotalRecoveredByCountry(data: CountrySummaryResponse) {
@@ -189,6 +187,7 @@ function renderChart(data: number[], labels: string[]) {
   const ctx = canvas.getContext('2d');
   Chart.defaults.color = '#f5eaea';
   Chart.defaults.font.family = 'Exo 2';
+  if(!ctx) return;
   new Chart(ctx, {
     type: 'line',
     data: {
