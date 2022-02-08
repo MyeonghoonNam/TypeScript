@@ -10,9 +10,21 @@
 3. 명시적인 `any` 선언하기
     - `tsconfig.json` 파일에 `noImplicitAny` 값을 `true`로 추가
     - 타입 구체화를 통한 타입 정의
+    - 만약, 타입을 정하기 어려운 복잡한 비지니스 로직의 경우 명시적으로라도 `any`를 선언하기.
 4. 프로젝트 환경 구성
-    - babel, eslint, prettier 등     
+    - babel, eslint, prettier 등
 5. 외부 라이브러리 모듈화
+    - 라이브러리를 쓰는 경우 DefinitelyTyped에서 `@types` 관련 라이브러리를 찾아 설치하기.
+6. `strict` 옵션 추가 후 타입 정의
+    ```
+    {
+      "compilerOptions": {
+        // ...
+        "strict": true,
+      },
+    }
+    ```
+    
 ## 참고 자료
 
 - [존스 홉킨스 코로나 현황](https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6)
