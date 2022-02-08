@@ -2,24 +2,30 @@ import axios, { AxiosResponse } from 'axios';
 import * as Chart from 'chart.js';
 
 // type module
-import { CovidSummaryResponse, CountrySummaryResponse, Country, CountrySummaryInfo } from './covid/index'
+import {
+  CovidSummaryResponse,
+  CountrySummaryResponse,
+  Country,
+  CountrySummaryInfo,
+} from './covid/index';
 
 // utils
-function $(selector: string) {
-  return document.querySelector(selector);
+function $<T extends HTMLElement>(selector: string) {
+  const element = document.querySelector(selector);
+  return element as T;
 }
 function getUnixTimestamp(date: Date | string) {
   return new Date(date).getTime();
 }
 
 // DOM
-const confirmedTotal = $('.confirmed-total') as HTMLParagraphElement;
-const deathsTotal = $('.deaths') as HTMLParagraphElement;
-const recoveredTotal = $('.recovered') as HTMLParagraphElement;
-const lastUpdatedTime = $('.last-updated-time') as HTMLParagraphElement;
-const rankList = $('.rank-list') as HTMLOListElement;
-const deathsList = $('.deaths-list') as HTMLOListElement;
-const recoveredList = $('.recovered-list') as HTMLOListElement;
+const confirmedTotal = $<HTMLParagraphElement>('.confirmed-total');
+const deathsTotal = $<HTMLParagraphElement>('.deaths');
+const recoveredTotal = $<HTMLParagraphElement>('.recovered');
+const lastUpdatedTime = $<HTMLParagraphElement>('.last-updated-time');
+const rankList = $<HTMLOListElement>('.rank-list');
+const deathsList = $<HTMLOListElement>('.deaths-list');
+const recoveredList = $<HTMLOListElement>('.recovered-list');
 const deathSpinner = createSpinnerElement('deaths-spinner');
 const recoveredSpinner = createSpinnerElement('recovered-spinner');
 
@@ -53,7 +59,10 @@ enum CovidStatus {
   Deaths = 'deaths',
 }
 
-function fetchCountryInfo(countryCode: string | undefined, status: CovidStatus): Promise<AxiosResponse<CountrySummaryResponse>> {
+function fetchCountryInfo(
+  countryCode: string | undefined,
+  status: CovidStatus
+): Promise<AxiosResponse<CountrySummaryResponse>> {
   // params: confirmed, recovered, deaths
   const url = `https://api.covid19api.com/country/${countryCode}/status/${status}`;
   return axios.get(url);
@@ -67,8 +76,6 @@ function startApp() {
 
 // events
 function initEvents() {
-  if(!rankList) return;
-  
   rankList.addEventListener('click', handleListClick);
 }
 
@@ -78,7 +85,9 @@ async function handleListClick(event: Event) {
     event.target instanceof HTMLParagraphElement ||
     event.target instanceof HTMLSpanElement
   ) {
-    selectedId = event.target.parentElement ? event.target.parentElement.id : undefined;
+    selectedId = event.target.parentElement
+      ? event.target.parentElement.id
+      : undefined;
   }
   if (event.target instanceof HTMLLIElement) {
     selectedId = event.target.id;
@@ -113,7 +122,8 @@ async function handleListClick(event: Event) {
 
 function setDeathsList(data: CountrySummaryResponse) {
   const sorted = data.sort(
-    (a: CountrySummaryInfo , b: CountrySummaryInfo) => getUnixTimestamp(b.Date) - getUnixTimestamp(a.Date)
+    (a: CountrySummaryInfo, b: CountrySummaryInfo) =>
+      getUnixTimestamp(b.Date) - getUnixTimestamp(a.Date)
   );
   sorted.forEach((value: CountrySummaryInfo) => {
     const li = document.createElement('li');
@@ -139,7 +149,8 @@ function setTotalDeathsByCountry(data: CountrySummaryResponse) {
 
 function setRecoveredList(data: CountrySummaryResponse) {
   const sorted = data.sort(
-    (a: CountrySummaryInfo, b: CountrySummaryInfo) => getUnixTimestamp(b.Date) - getUnixTimestamp(a.Date)
+    (a: CountrySummaryInfo, b: CountrySummaryInfo) =>
+      getUnixTimestamp(b.Date) - getUnixTimestamp(a.Date)
   );
   sorted.forEach((value: CountrySummaryInfo) => {
     const li = document.createElement('li');
@@ -183,11 +194,11 @@ async function setupData() {
 }
 
 function renderChart(data: number[], labels: string[]) {
-  const canvas = $('#lineChart') as HTMLCanvasElement
+  const canvas = $<HTMLCanvasElement>('#lineChart');
   const ctx = canvas.getContext('2d');
   Chart.defaults.color = '#f5eaea';
   Chart.defaults.font.family = 'Exo 2';
-  if(!ctx) return;
+  if (!ctx) return;
   new Chart(ctx, {
     type: 'line',
     data: {
@@ -206,7 +217,9 @@ function renderChart(data: number[], labels: string[]) {
 }
 
 function setChartData(data: CountrySummaryResponse) {
-  const chartData = data.slice(-14).map((value: CountrySummaryInfo) => value.Cases);
+  const chartData = data
+    .slice(-14)
+    .map((value: CountrySummaryInfo) => value.Cases);
   const chartLabel = data
     .slice(-14)
     .map((value: CountrySummaryInfo) =>
